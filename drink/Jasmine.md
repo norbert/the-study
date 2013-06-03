@@ -8,7 +8,7 @@
 
 ## Variations
 
-### Book
+### *The Savoy Cocktail Book*
 
 * **45 ml** gin
 * **7.5 ml** *Cointreau*
