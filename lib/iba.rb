@@ -48,8 +48,11 @@ LIQUID
     FileUtils.mkdir_p(directory)
     list.cocktails.each do |cocktail|
       if name.nil? || cocktail.name == name
-        File.open(File.join(directory, "#{cocktail.title}.md"), 'w') do |file|
-          file.puts cocktail.render
+        filename = File.join(directory, "#{cocktail.title}.md")
+        if !File.symlink?(filename)
+          File.open(filename, 'w') do |file|
+            file.puts cocktail.render
+          end
         end
       end
     end
