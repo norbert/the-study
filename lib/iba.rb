@@ -147,7 +147,7 @@ LIQUID
 
     def title
       name.split(WHITESPACE_CHARACTERS).map { |word|
-        if LOWERCASE_WORDS.include?(word.downcase)
+        if LOWERCASE_WORDS.include?(word)
           word.downcase
         else
           word.capitalize
@@ -260,10 +260,10 @@ LIQUID
         unit.pluralize
       }.freeze
 
-      MATCHER = Regexp.compile("\\b(\\d+(\\.\\d+)?) (" +
+      MATCHER = Regexp.compile("^\\b(\\d+(\\.\\d+)?)( (" +
         (UNITS + ABBREVIATED_UNITS + PLURAL_UNITS).uniq.map { |unit|
           "(#{unit})"
-        }.join('|') + ")? (.+)", Regexp::IGNORECASE)
+        }.join('|') + "))? (.+)$", Regexp::IGNORECASE)
 
       def self.parse(text)
         text = text.
@@ -273,7 +273,9 @@ LIQUID
 
         if match = text.match(MATCHER)
           quantity = Float(match[1])
-          unit = match[3].downcase unless match[3].nil?
+          if !match[4].nil?
+            unit = match[4].downcase
+          end
           text = match[-1]
 
           if PLURAL_UNITS.include?(unit)
