@@ -260,7 +260,9 @@ LIQUID
         unit.pluralize
       }.freeze
 
-      MATCHER = Regexp.compile("^\\b(\\d+(\\.\\d+)?)( (" +
+      QUANTITY = /\d+(\.\d+)?( to \d)?/.freeze
+
+      MATCHER = Regexp.compile("^\\b(#{QUANTITY})( (" +
         (UNITS + ABBREVIATED_UNITS + PLURAL_UNITS).uniq.map { |unit|
           "(#{unit})"
         }.join('|') + "))? (.+)$", Regexp::IGNORECASE)
@@ -272,9 +274,9 @@ LIQUID
           strip
 
         if match = text.match(MATCHER)
-          quantity = Float(match[1])
-          if !match[4].nil?
-            unit = match[4].downcase
+          quantity = Float(match[1]) rescue match[1]
+          if !match[5].nil?
+            unit = match[5].downcase
           end
           text = match[-1]
 
