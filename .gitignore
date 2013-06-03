@@ -2,3 +2,7 @@
 .bundle
 Gemfile.lock
 pkg/*
+
+# Data
+/drink/IBA
+/drink/MCAH
