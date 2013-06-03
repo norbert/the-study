@@ -8,7 +8,10 @@ RD_TARGET = $(TARGETDIR)/RD
 RD_REPOSITORY = $(SRCDIR)/reiddraper.git
 TARGETS = $(IBA_TARGET) $(MCAH_FILE) $(RD_TARGET)
 
-all: bundle iba mcah rd | $(TARGETDIR)
+all: bundle iba mcah rd menu | $(TARGETDIR)
+
+menu: iba
+	find $(TARGETDIR) $(IBA_TARGET) -maxdepth 1 -type f | sed -e 's/$(TARGETDIR)\///' -e 's/\.md//'
 
 test: bundle
 	bundle exec ruby -Ilib bin/iba build $(IBA_TARGET) SAZERAC
