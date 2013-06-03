@@ -231,15 +231,27 @@ LIQUID
     end
 
     class Ingredient
-      PARSER = /\b(\d+(\.\d+)?) (\w+) (.+)/u.freeze
+      UNITS = ['dash', 'splash', 'drop'].freeze
 
-      UNITS = ['dash', 'splash'].freeze
-      PLURAL_UNITS = UNITS.map { |unit|
+      ABBREVIATIONS = {
+        'cl' => 'cl',
+        'ml' => 'ml',
+        'teaspoon' => 'tsp',
+        'bar spoon' => 'bsp'
+      }.freeze
+      ABBREVIATED_UNITS = ABBREVIATIONS.keys.freeze
+      ActiveSupport::Inflector.inflections.uncountable(
+        *ABBREVIATIONS.values
+      )
+
+      PLURAL_UNITS = (UNITS + ABBREVIATED_UNITS).map { |unit|
         ActiveSupport::Inflector.pluralize(unit)
       }.freeze
 
-      ABBREVIATIONS = ['ml', 'tsp', 'bsp'].freeze
-      ActiveSupport::Inflector.inflections.uncountable(*ABBREVIATIONS)
+      MATCHER = Regexp.compile("\\b(\\d+(\\.\\d+)?) (" +
+        (UNITS + ABBREVIATED_UNITS + PLURAL_UNITS).uniq.map { |unit|
+          "(#{unit})"
+        }.join('|') + ")? (.+)", Regexp::IGNORECASE)
 
       def self.parse(text)
         text = text.
@@ -247,20 +259,20 @@ LIQUID
           gsub(QUOTE_CHARACTERS, "'").
           strip
 
-        if text =~ PARSER
-          quantity = Float($1)
-          unit = $3
-          text = $4.strip
+        if match = text.match(MATCHER)
+          quantity = Float(match[1])
+          unit = match[3].downcase unless match[3].nil?
+          text = match[-1]
+
+          if PLURAL_UNITS.include?(unit)
+            unit = ActiveSupport::Inflector.singularize(unit)
+          end
 
           if unit == 'cl'
             quantity = (quantity * 10).ceil
             unit = 'ml'
-          elsif UNITS.include?(unit)
-          elsif PLURAL_UNITS.include?(unit)
-            unit = ActiveSupport::Inflector.singularize(unit)
-          else
-            text = "#{unit} #{text}"
-            unit = nil
+          elsif abbreviation = ABBREVIATIONS[unit]
+            unit = abbreviation
           end
 
           [text, quantity, unit]
