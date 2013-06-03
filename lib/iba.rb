@@ -119,7 +119,7 @@ LIQUID
     DOUBLE_QUOTE_CHARACTERS = /”|“/u.freeze
     WHITESPACE_CHARACTERS = /\p{space}+/u.freeze
 
-    LOWERCASE_WORDS = ['on', 'the'].map(&:upcase).freeze
+    LOWERCASE_WORDS = ['on', 'the'].map(&:downcase).freeze
 
     attr_reader :url
 
@@ -147,10 +147,10 @@ LIQUID
 
     def title
       name.split(WHITESPACE_CHARACTERS).map { |word|
-        if LOWERCASE_WORDS.include?(word)
-          word.downcase
+        if word_ = LOWERCASE_WORDS.find { |w_| w_ == word.downcase }
+          word_
         else
-          word.capitalize
+          word.capitalize.gsub(/(-[a-z])/) { $1.upcase }
         end
       }.join(' ')
     end
@@ -265,7 +265,7 @@ LIQUID
       MATCHER = Regexp.compile("^\\b(#{QUANTITY})( (" +
         (UNITS + ABBREVIATED_UNITS + PLURAL_UNITS).uniq.map { |unit|
           "(#{unit})"
-        }.join('|') + "))? (.+)$", Regexp::IGNORECASE)
+        }.join('|') + "))?( of)? (.+)$", Regexp::IGNORECASE)
 
       def self.parse(text)
         text = text.
@@ -293,7 +293,7 @@ LIQUID
 
           [text, quantity, unit]
         else
-          [text]
+          [text.capitalize]
         end
       end
     end
