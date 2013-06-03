@@ -115,7 +115,8 @@ LIQUID
   class Cocktail < Page
     ROOT = '.oc_info'.freeze
 
-    QUOTE_CHARACTERS = /’|‘/u.freeze
+    SINGLE_QUOTE_CHARACTERS = /’|‘/u.freeze
+    DOUBLE_QUOTE_CHARACTERS = /”|“/u.freeze
     WHITESPACE_CHARACTERS = /\p{space}+/u.freeze
 
     LOWERCASE_WORDS = ['on', 'the'].map(&:upcase).freeze
@@ -136,7 +137,7 @@ LIQUID
     end
 
     def stripped_name
-      raw_name.gsub(QUOTE_CHARACTERS, "'").strip
+      raw_name.gsub(SINGLE_QUOTE_CHARACTERS, "'").strip
     end
     alias_method :name, :stripped_name
 
@@ -166,7 +167,8 @@ LIQUID
         node = root.children[4]
         @description = node.text.
           gsub(WHITESPACE_CHARACTERS, " ").
-          gsub(QUOTE_CHARACTERS, "'").
+          gsub(SINGLE_QUOTE_CHARACTERS, "'").
+          gsub(DOUBLE_QUOTE_CHARACTERS, "\"").
           strip
       else
         @description
@@ -256,7 +258,7 @@ LIQUID
       def self.parse(text)
         text = text.
           gsub(WHITESPACE_CHARACTERS, " ").
-          gsub(QUOTE_CHARACTERS, "'").
+          gsub(SINGLE_QUOTE_CHARACTERS, "'").
           strip
 
         if match = text.match(MATCHER)
