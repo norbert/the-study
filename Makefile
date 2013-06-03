@@ -3,8 +3,11 @@ IBADIR = $(TARGETDIR)/IBA
 
 all: iba | $(TARGETDIR)
 
+test:
+	bundle exec ruby -Ilib bin/iba build $(IBADIR) SAZERAC
+
 clean:
-	rm -rf ${TARGETDIR}
+	rm -rf ${IBADIR}
 
 bundle:
 	bundle install --quiet

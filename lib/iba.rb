@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'fileutils'
 
 require 'faraday'
@@ -8,9 +10,11 @@ require 'liquid'
 require 'active_support/inflector'
 
 module IBA
-  BASE_URL = 'http://www.iba-world.com'
+  BASE_URL = 'http://www.iba-world.com'.freeze
 
-  TEMPLATE = <<LIQUID
+  TEMPLATE =
+(
+<<LIQUID
 # {{ title }}
 
 ## Variations
@@ -21,6 +25,7 @@ module IBA
 {% endfor %}
 {{ description }}
 LIQUID
+).strip.freeze
 
   def self.connection
     Faraday.new(BASE_URL) do |builder|
@@ -78,8 +83,9 @@ LIQUID
   end
 
   class List < Page
-    URL = 'index.php?option=com_content&view=article&id=88&Itemid=532'
-    ROOT = '#cocktails'
+    URL = 'index.php?option=com_content&view=article&id=88&Itemid=532'.freeze
+
+    ROOT = '#cocktails'.freeze
 
     def url
       URL
@@ -107,9 +113,14 @@ LIQUID
   end
 
   class Cocktail < Page
-    ROOT = '.oc_info'
+    ROOT = '.oc_info'.freeze
 
-    attr_reader :name, :url
+    QUOTE_CHARACTERS = /’|‘/u.freeze
+    WHITESPACE_CHARACTERS = /\p{space}+/u.freeze
+
+    LOWERCASE_WORDS = ['on', 'the'].map(&:upcase).freeze
+
+    attr_reader :url
 
     def initialize(name, url)
       @name = name
@@ -120,12 +131,27 @@ LIQUID
       new(node.name, node.url)
     end
 
-    def name
-      @name ||= parser.info.info.name
+    def raw_name
+      @name ||= parser.info.name
+    end
+
+    def stripped_name
+      raw_name.gsub(QUOTE_CHARACTERS, "'").strip
+    end
+    alias_method :name, :stripped_name
+
+    def group
+      parser.info.group
     end
 
     def title
-      ActiveSupport::Inflector.titleize(name)
+      name.split(WHITESPACE_CHARACTERS).map { |word|
+        if LOWERCASE_WORDS.include?(word.downcase)
+          word.downcase
+        else
+          word.capitalize
+        end
+      }.join(' ')
     end
 
     def ingredients
@@ -138,7 +164,10 @@ LIQUID
       if !instance_variable_defined?(:@description)
         root = parser.doc.search(ROOT).first
         node = root.children[4]
-        @description = node.text.strip
+        @description = node.text.
+          gsub(WHITESPACE_CHARACTERS, " ").
+          gsub(QUOTE_CHARACTERS, "'").
+          strip
       else
         @description
       end
@@ -153,37 +182,47 @@ LIQUID
       }
     end
 
-    def template
-      @template ||= Liquid::Template.parse(TEMPLATE)
+    module Rendering
+      def template
+        @template ||= Liquid::Template.parse(TEMPLATE)
+      end
+
+      def ingredients_for_template
+        ingredients.map { |(text, quantity, unit)|
+          ingredient_for_template(text, quantity, unit)
+        }
+      end
+
+      def ingredient_for_template(text, quantity = nil, unit = nil)
+        if quantity
+          "**#{quantity_for_template(quantity, unit)}** #{text}"
+        else
+          text
+        end
+      end
+
+      def quantity_for_template(quantity, unit = nil)
+        quantity = quantity.to_s.sub(/\.0$/u, '')
+        quantity.concat(" #{unit.pluralize}") if unit
+        quantity
+      end
+
+      def render
+        output = template.render(
+          'title' => title,
+          'ingredients' => ingredients_for_template,
+          'description' => description
+        )
+        output.strip
+      end
     end
 
-    def ingredients_for_template
-      ingredients.map { |(text, quantity, unit)|
-        quantity ? "**#{quantity_for_template(quantity, unit)}** #{text}" : text
-      }
-    end
-
-    def quantity_for_template(quantity, unit)
-      quantity = quantity.to_s.sub(/\.0$/, '')
-      quantity.concat(" #{unit}") if unit
-      quantity
-    end
-
-    def render
-      output = template.render(
-        'title' => title,
-        'ingredients' => ingredients_for_template,
-        'description' => description
-      )
-      output.strip
-    end
+    include Rendering
 
     class Parser < Nibbler
       element ROOT => :info do
-        element '.info' => :info do
-          element '.info1' => :name
-          element '.info2' => :type
-        end
+        element '.info1' => :name
+        element '.info2' => :type
 
         element '.list' => :list do
           elements 'li' => :ingredients
@@ -192,21 +231,38 @@ LIQUID
     end
 
     class Ingredient
-      PARSER = /\b(\d+(\.\d+)?) (\w+) (.+)/
+      PARSER = /\b(\d+(\.\d+)?) (\w+) (.+)/u.freeze
+
+      UNITS = ['dash', 'splash'].freeze
+      PLURAL_UNITS = UNITS.map { |unit|
+        ActiveSupport::Inflector.pluralize(unit)
+      }.freeze
+
+      ABBREVIATIONS = ['ml', 'tsp', 'bsp'].freeze
+      ActiveSupport::Inflector.inflections.uncountable(*ABBREVIATIONS)
 
       def self.parse(text)
-        text = text.strip
+        text = text.
+          gsub(WHITESPACE_CHARACTERS, " ").
+          gsub(QUOTE_CHARACTERS, "'").
+          strip
+
         if text =~ PARSER
           quantity = Float($1)
           unit = $3
           text = $4.strip
-          if unit == "cl"
+
+          if unit == 'cl'
             quantity = (quantity * 10).ceil
-            unit = "ml"
+            unit = 'ml'
+          elsif UNITS.include?(unit)
+          elsif PLURAL_UNITS.include?(unit)
+            unit = ActiveSupport::Inflector.singularize(unit)
           else
             text = "#{unit} #{text}"
             unit = nil
           end
+
           [text, quantity, unit]
         else
           [text]
