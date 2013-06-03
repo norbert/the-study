@@ -22,3 +22,13 @@ $ make mcah
 #### References
 
 * [GitHub](https://github.com/daveturnbull/cocktails)
+
+### [Reid Draper](http://reiddraper.com)
+
+```
+$ make rd
+```
+
+#### References
+
+* [GitHub](https://github.com/reiddraper/cocktail-recipes)
