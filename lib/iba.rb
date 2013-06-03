@@ -163,13 +163,21 @@ LIQUID
 
     def description
       if !instance_variable_defined?(:@description)
-        root = parser.doc.search(ROOT).first
-        node = root.children[4]
-        @description = node.text.
+        doc = parser.info.doc
+        node = doc.children[4]
+        text = node.text.
           gsub(WHITESPACE_CHARACTERS, " ").
           gsub(SINGLE_QUOTE_CHARACTERS, "'").
           gsub(DOUBLE_QUOTE_CHARACTERS, "\"").
           strip
+        if node.to_html.include?('<br>')
+          text.gsub!(/(.)\.([A-Z])/) do
+            "#{$1}. #{$2}"
+          end
+        end
+        text.gsub!(/\s+Variations:$/, "")
+        text.gsub!(/\s\(note:.*$/, ".")
+        @description = text
       else
         @description
       end
