@@ -213,7 +213,9 @@ LIQUID
 
       def quantity_for_template(quantity, unit = nil)
         quantity = quantity.to_s.sub(/\.0$/u, '')
-        quantity.concat(" #{unit.pluralize}") if unit
+        if unit
+          quantity.concat(" #{quantity == "1" ? unit : unit.pluralize}")
+        end
         quantity
       end
 
@@ -255,7 +257,7 @@ LIQUID
       )
 
       PLURAL_UNITS = (UNITS + ABBREVIATED_UNITS).map { |unit|
-        ActiveSupport::Inflector.pluralize(unit)
+        unit.pluralize
       }.freeze
 
       MATCHER = Regexp.compile("\\b(\\d+(\\.\\d+)?) (" +
@@ -275,7 +277,7 @@ LIQUID
           text = match[-1]
 
           if PLURAL_UNITS.include?(unit)
-            unit = ActiveSupport::Inflector.singularize(unit)
+            unit = unit.singularize
           end
 
           if unit == 'cl'
