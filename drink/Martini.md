@@ -1,14 +1,14 @@
 # Martini
 
-* **40 ml** gin (*Plymouth Gin*)
-* **10 ml** dry white vermouth (*Noilly Prat*)
+* **40 ml** gin ( *Plymouth Gin* )
+* **10 ml** dry white vermouth ( *Noilly Prat* )
 
 ## Variations
 
 ### IBA: Dry
 
-* **60 ml** Gin
-* **10 ml** Dry Vermouth
+* **60 ml** gin
+* **10 ml** dry white vermouth
 
 ## Shaken
 

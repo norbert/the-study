@@ -12,7 +12,7 @@
 * **2 dashes** *Angostura Bitters*
 * **2 dashes** curaćao
 * **45 ml** gin
-* **0.5 wineglass** sweet red vermouth
+* **125 ml** sweet red vermouth
 
 ### *Food Republic*
 

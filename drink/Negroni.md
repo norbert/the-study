@@ -4,8 +4,8 @@
 
 ### IBA
 
-* **30 ml** gin (*Tanqueray No. 10*)
-* **30 ml** sweet red vermouth (*Antica Formula*)
+* **30 ml** gin ( *Tanqueray No. 10* )
+* **30 ml** sweet red vermouth ( *Antica Formula* )
 * **30 ml** *Campari*
 * Orange twist
 

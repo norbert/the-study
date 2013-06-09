@@ -1,9 +1,10 @@
 # Sazerac
 
-* **45 ml** cognac (*Remy Martin VSOP*)
+* **45 ml** cognac ( *Remy Martin VSOP* )
 * **3 dashes** *Peychaud's Bitters*
 * **1 tsp** simple syrup
 * **0.5 tsp** absinthe
+* Lemon twist
 
 ## Variations
 
@@ -17,7 +18,7 @@
 Rinse a chilled old-fashioned glass with the absinthe, add crushed ice and set
 it aside. Stir the remaining ingredients over ice and set it aside. Discard the
 ice and any excess absinthe from the prepared glass, and strain the drink into
-the glass. Add the Lemon peel for garnish.
+the glass. Add the lemon peel for garnish.
 
 ### Rye
 
