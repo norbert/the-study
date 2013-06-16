@@ -15,7 +15,7 @@ Substitute rye whiskey for bourbon whiskey.
 
 ### Perfect
 
-Add equal parts whiskey and vermouth.
+Add equal parts dry white vermouth ( *Dolin* ) and sweet red vermouth.
 
 ## References
 
