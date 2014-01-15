@@ -1,6 +1,6 @@
 # Martinez
 
-* **45 ml** gin ( *Sipsmith* )
+* **45 ml** gin
 * **22.5 ml** sweet red vermouth ( *Antica Formula* )
 * **15 ml** maraschino liqueur ( *Luxardo* )
 * **2 dashes** orange bitters

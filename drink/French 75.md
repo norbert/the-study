@@ -4,7 +4,7 @@
 
 ### IBA
 
-* **30 ml** gin ( *Sipsmith* )
+* **30 ml** gin
 * **15 ml** lemon juice
 * **2 dashes** simple syrup
 * **60 ml** Champagne

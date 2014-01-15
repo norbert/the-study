@@ -1,6 +1,6 @@
 # Old Fashioned
 
-* **45 ml** rye whiskey ( *(ri)1* )
+* **45 ml** bourbon whiskey or rye whiskey ( *Basil Hayden's* or *High West Double Rye* )
 * **2 dashes** *Angostura Bitters*
 * **1** sugar cube
 * Orange twist
