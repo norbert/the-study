@@ -9,6 +9,8 @@
 * **30 ml** *Campari*
 * Orange twist
 
+Pour all ingredients directly into old-fashioned glass filled with ice. Stir gently. Garnish with half orange slice.
+
 ## References
 
 * [Wikipedia](http://en.wikipedia.org/wiki/Negroni)

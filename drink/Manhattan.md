@@ -4,16 +4,18 @@
 
 ### IBA
 
-* **50 ml** rye whiskey ( *(ri)1* )
+* **50 ml** rye whiskey ( *High West Doulbe Rye* )
 * **20 ml** sweet red vermouth ( *Punt e Mes* )
 * **1 dash** *Angostura Bitters*
 * Maraschino cherry
 
-### Bourbon
+Pour all ingredients into mixing glass with ice cubes. Stir well. Strain into chilled martini or cocktail glass. Garnish with maraschino cherry.
+
+### Bourbon Manhattan
 
 Substitute rye whiskey for bourbon whiskey.
 
-### Perfect
+### Perfect Manhattan
 
 Add equal parts dry white vermouth ( *Dolin* ) and sweet red vermouth.
 

@@ -5,9 +5,7 @@
 * **1** sugar cube
 * Orange twist
 
-Place sugar cube in old-fashioned glass and saturate with bitters, add a dash of
-plain water. Muddle until dissolved. Fill the glass with ice cubes and add
-whisky. Garnish with orange twist.
+Place sugar cube in old-fashioned glass and saturate with bitters, add a dash of plain water. Muddle until dissolved. Fill the glass with ice cubes and add whisky. Garnish with orange twist.
 
 ## Variations
 

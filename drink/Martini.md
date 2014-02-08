@@ -5,12 +5,14 @@
 
 ## Variations
 
-### IBA: Dry
+### IBA: Dry Martini
 
 * **60 ml** gin
 * **10 ml** dry white vermouth
 
-## Shaken
+Pour all ingredients into mixing glass with ice cubes. Stir well Strain in chilled martini cocktail glass. Squeeze oil from lemon peel onto the drink, or garnish with olive.
+
+## Shaken Martini
 
 Shake and strain into a chilled cocktail glass.
 

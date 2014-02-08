@@ -14,15 +14,16 @@
 * **10 ml** absinthe
 * **1** sugar cube
 * **2 dashes** *Peychaud's bitters*
+* Lemon twist
 
 Rinse a chilled old-fashioned glass with the absinthe, add crushed ice and set
 it aside. Stir the remaining ingredients over ice and set it aside. Discard the
 ice and any excess absinthe from the prepared glass, and strain the drink into
 the glass. Add the lemon peel for garnish.
 
-### Rye
+### Rye Sazerac
 
-Substitute cognac for rye whiskey.
+Substitute cognac for rye whiskey ( *Old Overholt* ).
 
 ## References
 
