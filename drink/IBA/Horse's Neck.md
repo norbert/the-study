@@ -4,7 +4,7 @@
 
 ### IBA
 
-* **40 ml** Cognac
+* **40 ml** Brandy
 * **120 ml** Ginger Ale
 * Dash of angostura bitters (optional)
 
