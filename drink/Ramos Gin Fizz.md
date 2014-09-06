@@ -4,8 +4,8 @@
 * **15 ml** lemon juice
 * **15 ml** lime juice
 * **20 ml** 2:1 simple syrup
-* *0.5 bsp* orange flower water
-* *0.25 bsp* vanilla extract
+* **0.5 bsp** orange flower water
+* **0.25 bsp** vanilla extract
 * **1** egg white
 * **30 ml** heavy cream
 * Soda water
