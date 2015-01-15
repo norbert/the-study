@@ -36,7 +36,7 @@ LIQUID
 
   def self.execute(command, *args)
     case command
-    when "build"
+    when "update"
       directory = args[0]
       build(directory, args[1])
     else
@@ -98,6 +98,10 @@ LIQUID
       @cocktails ||= parser.lists.map(&:cocktails).flatten.map { |node|
         Cocktail.build_from_node(node)
       }
+    end
+
+    def find(name)
+      cocktails.find { |cocktail| cocktail.name == name }
     end
 
     def as_json
@@ -178,8 +182,7 @@ LIQUID
             "#{$1}. #{$2}"
           end
         end
-        text.gsub!(/\s+Variations:$/, "")
-        text.gsub!(/\s\(note:.*$/, ".")
+        text.gsub!(/\s+Variations:$/, '')
         @description = text
       else
         @description

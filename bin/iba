@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'iba'
+require_relative '../lib/drink/iba'
 
 IBA.execute(*ARGV)

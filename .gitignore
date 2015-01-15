@@ -2,8 +2,8 @@
 .bundle
 Gemfile.lock
 pkg/*
+.ruby-version
 
-# Data
 /drink/IBA
 /drink/MCAH
 /drink/RD
