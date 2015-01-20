@@ -10,7 +10,7 @@ TARGETS = $(IBA_TARGET)
 all: menu | $(TARGETDIR)
 
 menu: iba
-	find $(SRCDIR) $(IBA_TARGET) -maxdepth 1 -type f | \
+	find $(TARGETDIR) -maxdepth 3 -type f | \
 		sed -e 's/$(TARGETDIR)\///' -e 's/\.md//' | \
 		sed -e 's/\// \/ /g'
 
