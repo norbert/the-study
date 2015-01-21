@@ -1,19 +1,18 @@
 # Boulevardier
 
-* **30 ml** bourbon whiskey
+* **30 ml** rye whiskey ( *Willet* ) or bourbon whiskey
 * **30 ml** sweet red vermouth ( *Antica Formula* )
 * **25 ml** *Campari*
 * Orange twist
 
 ## Variations
 
-* **30 ml** Spicy rye whiskey (Willet is nice)
-* **30 ml** sweet red vermouth ( *Antica Formula* )
-* **25 ml** Gran Classico
+* **30 ml** rye whiskey
+* **30 ml** sweet red vermouth
+* **25 ml** *Gran Classico*
 * Orange twist
 
-The Gran Classico is less astringint and nicely orange flavored compared
-to campari. I find a nice Rye adds nice spicyness to the drink as well.
+> The Gran Classico is less astringint and more orange flavored than Campari.
 
 ## References
 
