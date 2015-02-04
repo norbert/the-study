@@ -11,8 +11,8 @@ Juice peeled limes. This should yield at least **600 ml** lime juice.
 Combine lime juice and sugar. Stir until dissolved. Crush peels and add to
 mixture. Refrigerate for 12 to 24 hours.
 
-Strain mixture with cheesecloth. Refrigerate and wait at least 24 hours, to
-cure, before using.
+Strain mixture with cheesecloth. This should yield at least **800 ml** of
+cordial. Refrigerate and wait at least 24 hours before using.
 
 ## References
 
